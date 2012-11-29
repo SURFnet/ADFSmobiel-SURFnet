@@ -1,0 +1,72 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MyMasterPage" EnableViewState="false" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir='<%$ Resources:CommonResources, LanguageDirection%>' runat="server">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="robots" content="noindex, nofollow" />
+    <title>AD FS 2.0 Authentication Web site</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" media="screen and (max-width: 370px)" href="css/style_320.css" />
+    <link rel="stylesheet" media="screen and (max-device-width: 480px), handheld" href="css/style_480.css" />
+    <script type="text/javascript">
+    function initiate(){
+        document.getElementById('ctl00_ContentPlaceHolder1_UsernameTextBox').focus();
+    }
+    </script>
+</head>
+
+<body class="index" onload="initiate()">
+<!--<asp:Label ID="PageTitleLabel" runat="server"></asp:Label>-->
+<!--<asp:Label ID="STSLabel" runat="server"></asp:Label>-->
+
+<!-- DE WRAPPER CENTREERT DE CONTENT VAN DE WEBSITE -->
+<div id="wrapper">
+
+  <!-- HEADER MET LOGO, EVENTUELE TITEL EN TAAL TOGGLE -->
+  <div id="header">
+          <img id="logo" src="https://login.demo.surfconext.nl/simplesaml/module.php/themeSURFnet/logo.png" /> <!-- DIT IS HET LOGO -->
+          <h1 class="mainTitle"></h1>                                     <!-- HIER KAN EEN TITEL -->
+  </div>
+  <!-- EINDE HEADER MET LOGO, EVENTUELE TITEL EN TAAL TOGGLE -->
+
+  <div id="content">
+
+    <form id="MainForm" runat="server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    </form>
+
+    <!-- LIJST MET TIPS -->
+    <div class="subitem">
+      <div class="createIndex">
+        <h2><asp:Label ID="HelpHeader" runat="server" Text="<%$ Resources:MobileResources, HelpHeader %>"></asp:Label></h2>
+        <p><asp:Label ID="HelpText" runat="server" Text="<%$ Resources:MobileResources, HelpText %>"></asp:Label></p>
+<!--
+        <ul>
+          <h2>Tips:</h2>
+          <li><b>Sluiten uw browser af om misbruik te voorkomen.</b> U inlog blijft behouden voor alle websites en applicaties die ervan gebruikmaken zolang u uw browser niet afsluit. </li>
+          <li>Controleer altijd voorafgaand aan het inlog de URL van deze pagina. Deze moet beginnen met <b>https://federatie.c-college.nl</b></li>
+          <li>Heeft uw aanhoudende problemen heeft met inloggen? Neem dan contact opnemen met de servicedesk: email <a href="mailto: servicedesk@c-college.nl">servicedesk@c-college.nl</a>, telefoon 088-4699070</li>
+        </ul>
+-->
+      </div>
+    </div>
+    <!-- EINDE LIJST MET TIPS -->
+
+  </div>
+
+<!-- FOOTER -->
+<!--
+  <div id="footer">
+          <p><a href="#">Help</a>  <a href="#"> Privacy Policy</a>  &copy; 2012 Catharijne college</p>
+  </div>
+-->
+<!-- EINDE FOOTER -->
+
+</div>
+<!-- EINDE WRAPPER -->
+
+</body>
+</html>
