@@ -1,7 +1,7 @@
 # Introduction
 Verbetering bruikbaarheid ADFS login scherm ten behoeve van Mobiele gebruikers
 
-Dit project bevat een aanpassing op de standaard distributie van [ADFS](http://technet.microsoft.com/en-us/library/cc736690(v=ws.10).aspx) weaarmee een login pagina gemaakt kan worden welke in geoptimaliseerd voor mobile devices zoals smart phones en tablets.  Hety ontwerp is gebaseerd op het ontwerp van Stroomt welke [hier](https://wiki.surfnetlabs.nl/download/attachments/23560508/Bruikbaarheidsrichlijnen-IdPs-surfederatie-v1.2.pdf) gevonden kan worden.
+Dit project bevat een aanpassing op de standaard distributie van [ADFS](http://www.microsoft.com/en-us/download/details.aspx?id=10909) weaarmee een login pagina gemaakt kan worden welke in geoptimaliseerd voor mobile devices zoals smart phones en tablets.  Hety ontwerp is gebaseerd op het ontwerp van Stroomt welke [hier](https://wiki.surfnetlabs.nl/download/attachments/23560508/Bruikbaarheidsrichlijnen-IdPs-surfederatie-v1.2.pdf) gevonden kan worden.
 
 Zie de handleiding over [Verbetering bruikbaarheid ADFS login scherm ten behoeve van Mobiele gebruikers](https://github.com/SURFnet/ADFSmobiel-SURFnet/blob/master/ADSF2_Mobileforms.pdf). 
 
