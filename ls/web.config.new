@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<configuration>
+    <configSections>
+        <section name="microsoft.identityServer.web" type="Microsoft.IdentityServer.Web.Configuration.FederationPassiveConfigurationSection, Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"/>
+    </configSections>
+    <system.web>
+        <compilation defaultLanguage="c#">
+            <assemblies>
+                <add assembly="Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+                <add assembly="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+                <add assembly="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+                <add assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+                <add assembly="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+                <add assembly="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+            </assemblies>
+        </compilation>
+        <authentication mode="Windows"/>
+        <pages enableViewState="false" enableViewStateMac="false" />
+        <customErrors mode="Off" />
+    </system.web>
+
+    <appSettings>
+        <!-- Display the consent drop down. Uncomment this, or add the key below to your
+         app settings if you want to display consent options as a drop down option in the
+         IdP initiated sign-on scenario (IdpInitiatedSignOn.aspx). -->
+
+        <!--
+      <add key="displayConsent" />
+    -->
+
+        <!-- Display the exception message on the error page. Uncomment this, or add the key below to your
+         app settings if you want to see the exception messsgae. The exception messages are localized in the 
+         language of the server.-->
+
+        <add key="displayExceptions" />
+
+        <!-- To display a corporate logo, uncomment the following setting.
+         For best results, ensure that the filename is a file in the same directory as
+         this file and is 600 pixels wide by 100 pixels tall.
+    -->
+
+        <add key="logo" value="logo.png" />
+        <add key="DefaultLanguage" value="en-US"/>
+        <add key="AvailableLanguage" value="nl, en-us" />
+    </appSettings>
+
+    <system.webServer>
+        <handlers>
+            <add name="BasicAuthHandler" path="auth/basic/" verb="*" type="Microsoft.IdentityServer.Web.BasicEndpointHandler, Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="integratedMode,runtimeVersionv2.0" />
+            <add name="PassiveProtocolHandler" path="/adfs/ls/" allowPathInfo="true" verb="*" type="Microsoft.IdentityServer.Web.PassiveProtocolHandler, Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="integratedMode,runtimeVersionv2.0" />
+            <add name="TlsAuthHandler" path="auth/sslClient/" verb="*" type="Microsoft.IdentityServer.Web.TlsEndpointHandler, Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="integratedMode,runtimeVersionv2.0" />
+            <add name="WindowsAuthHandler" path="auth/integrated/" verb="*" type="Microsoft.IdentityServer.Web.WindowsEndpointHandler, Microsoft.IdentityServer, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="integratedMode,runtimeVersionv2.0" />
+        </handlers>
+        <validation validateIntegratedModeConfiguration="false" />
+    </system.webServer>
+
+    <microsoft.identityServer.web>
+        <localAuthenticationTypes>
+            <add name="Forms" page="FormsSignIn.aspx" />
+            <add name="Integrated" page="auth/integrated/" />
+            <add name="TlsClient" page="auth/sslclient/" />
+            <add name="Basic" page="auth/basic/" />
+        </localAuthenticationTypes>
+        <commonDomainCookie writer="" reader="" />
+        <context hidden="true" />
+        <error page="Error.aspx" />
+        <acceptedFederationProtocols saml="true" wsFederation="true" />
+        <homeRealmDiscovery page="HomeRealmDiscovery.aspx" />
+        <persistIdentityProviderInformation enabled="true" lifetimeInDays="30" />
+        <singleSignOn enabled="true" />
+    </microsoft.identityServer.web>
+
+    <system.diagnostics>
+        <sources>
+            <!-- To enable tracing on a particular component, uncomment the desired section below. Then uncomment
+           the shared listener named "xml" and the Microsoft.IdentityServer.SourceSwitch in the switches element.
+       -->
+
+            <!-- Federation passive related tracing 
+      <source name="Microsoft.IdentityServer.Web" switchName="Microsoft.IdentityServer.SourceSwitch" switchType="System.Diagnostics.SourceSwitch" >
+        <listeners>
+          <add name="xml" />
+        </listeners>
+      </source> -->
+
+        </sources>
+
+        <!-- This is the shared listener for all of the tracing.  All of the sources write to this listener.
+         If you want a more fine-grained listener, one can be added to the listeners element in each source above, which
+         can then output to different files if desired. After uncommenting this, put the absolute path of the trace file
+         ie c:\temp\TraceData.svclog.  Be sure that the identity of the service can write to the file and directory -->
+        <sharedListeners>
+            <!-- <add name="xml" type="System.Diagnostics.XmlWriterTraceListener" initializeData="" /> -->
+        </sharedListeners>
+
+        <switches>
+            <!-- Uncomment this switch to use with your trace sources.  You can add more and configure 
+           them per source by editing the value attribute.  For each source above, there is a switchName
+           attribute that links the source to a switch in this collection.  You can use the same switch
+           with every source, or you can create a different switch for source for more control if thats
+           desired.
+      <add name="Microsoft.IdentityServer.SourceSwitch" value="Information" />
+      -->
+        </switches>
+        <trace autoflush="true" ></trace>
+    </system.diagnostics>
+</configuration>
